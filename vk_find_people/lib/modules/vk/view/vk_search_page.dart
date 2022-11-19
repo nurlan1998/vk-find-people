@@ -53,48 +53,93 @@ class _VkSearchPageState extends State<VkSearchPage> {
             children: <Widget>[
               const SizedBox(height: 10),
               Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: TextField(
-                    controller: searchController,
-                    onChanged: (String value) {
-                      if (value.isNotEmpty && value.length > 2) {
-                        _bloc.add(GetUsers(field: value));
-                      }
-                    },
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                          vertical: 5.0, horizontal: 10.0),
-                      border: border,
-                      enabledBorder: border,
-                      suffixIcon: searchController.text.isNotEmpty
-                          ? IconButton(
-                              icon: const Icon(Icons.close),
-                              onPressed: () {
-                                setState(() {
-                                  searchController.clear();
-                                  FocusScope.of(context).unfocus();
-                                  usersInfo = [];
-                                });
-                              })
-                          : const Icon(Icons.search),
-                      hintText: '',
-                    ),
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: TextField(
+                  controller: searchController,
+                  onChanged: (String value) {
+                    if (value.isNotEmpty && value.length > 2) {
+                      _bloc.add(GetUsers(field: value));
+                    }
+                  },
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 5.0, horizontal: 10.0),
+                    border: border,
+                    enabledBorder: border,
+                    suffixIcon: searchController.text.isNotEmpty
+                        ? IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () {
+                              setState(() {
+                                searchController.clear();
+                                FocusScope.of(context).unfocus();
+                                usersInfo = [];
+                              });
+                            })
+                        : const Icon(Icons.search),
+                    hintText: '',
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
               if (usersInfo != null)
                 for (var x in usersInfo!)
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: <Widget>[
-                        const SizedBox(height: 10),
-                        CircleAvatar(
-                            radius: 30,
-                            backgroundImage: NetworkImage(x.photo200!)),
-                        const SizedBox(width: 10),
-                        Text(x.firstName)
-                      ],
+                  GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: Image.network(
+                                  x.photo200!,
+                                  width: double.infinity,
+                                  height: 300,
+                                  fit: BoxFit.fitWidth,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(children: <Widget>[
+                                  const Text(
+                                    'Имя пользователя:',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    x.firstName,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                    ),
+                                  )
+                                ]),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: <Widget>[
+                          const SizedBox(height: 10),
+                          CircleAvatar(
+                              radius: 30,
+                              backgroundImage: NetworkImage(x.photo200!)),
+                          const SizedBox(width: 10),
+                          Text(x.firstName)
+                        ],
+                      ),
                     ),
                   ),
             ],

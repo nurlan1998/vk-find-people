@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:vk_find_people/modules/auth/secrets_key.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../app/widgets/empty_app_bar.dart';
@@ -17,7 +18,7 @@ class VkAuthPage extends StatefulWidget {
 
 class _VkAuthPageState extends State<VkAuthPage> {
   final url = Uri.https('oauth.vk.com', '/authorize', {
-    'client_id': '51460448',
+    'client_id': SecretsKey.vkApiKey,
     'redirect_uri': successUrl,
     'display': 'mobile',
     'response_type': 'token',
