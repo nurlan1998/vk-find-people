@@ -2,10 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:vk_find_people/modules/auth/secrets_key.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../app/widgets/empty_app_bar.dart';
+import '../secret.dart';
 
 const successUrl = 'https://oauth.vk.com/blank.html';
 
