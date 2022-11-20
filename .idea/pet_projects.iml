@@ -36,6 +36,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vk_find_people/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/vk_find_people/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/vk_find_people/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/news_app_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/news_app_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/news_app_flutter/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
